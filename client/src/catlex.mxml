@@ -1,8 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
-			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600">
-	<fx:Declarations>
-		<!-- Разместить невизуальные элементы (например, службы или объекты значений) -->
-	</fx:Declarations>
+			   xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:model="components.model.*" xmlns:components="ru.satcit.rating.components.*">
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			
+			import components.renderer.NavigationItemRenderer;
+			[Bindable]
+			private var navigation:ArrayCollection = new ArrayCollection(["Start page", "Articles", "About"]);
+			
+			[Bindable]
+			private var contentButtons:ArrayCollection = new ArrayCollection(["1", "2", "3", "4", "5", "6"]);
+		]]>
+	</fx:Script>
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center"
+                      paddingLeft="10"
+                      paddingTop="10"
+                      paddingRight="10"
+                      paddingBottom="10"/>
+	</s:layout>
+	
+	<fx:Style source="style/Styles.css"/>
+	
+  <s:BorderContainer cornerRadius="25" 
+                     width="90%"
+                     borderWeight="2">
+    <s:Label id="titleLabel" 
+             text="Сайт привередливого кота :D"
+             width="100%" height="40"/>
+  </s:BorderContainer>
+	
+	<s:Group width="100%">
+		<s:layout>
+			<s:HorizontalLayout/>
+		</s:layout>
+    <s:SkinnableDataContainer id="navigationGroup" 
+                              dataProvider="{navigation}" 
+                              itemRenderer="components.renderer.NavigationItemRenderer"
+                              width="{calendar.width}">
+      <s:layout>
+        <s:VerticalLayout/>
+      </s:layout>
+    </s:SkinnableDataContainer>
+		
+		<s:VGroup width="100%"
+              height="100%">
+			<model:ArticleComponent id="mainContent" 
+               title="Content" 
+               height="100%" 
+               width="100%"
+               skinClass="components.ArticleSkin">
+        <s:Label text="Some content in panel"/>
+      </model:ArticleComponent>
+			<s:DataGroup id="contentButtonsGroup" 
+                   dataProvider="{contentButtons}" 
+                   itemRenderer="spark.skins.spark.DefaultItemRenderer">
+				<s:layout>
+					<s:HorizontalLayout/>
+				</s:layout>
+			</s:DataGroup>
+		</s:VGroup>
+		<mx:DateChooser id="calendar"
+						selectionIndicatorSkin="skin.SelectDateSkin">
+		</mx:DateChooser>
+	</s:Group>
 </s:Application>

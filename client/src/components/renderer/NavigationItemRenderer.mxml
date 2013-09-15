@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				width="100%"
+				autoDrawBackground="false">
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="hovered"/>
+	</s:states>
+	<s:BorderContainer id="navigationItem" borderWeight="2"
+					   cornerRadius="10"
+					   height="100%" width="100%">
+		<s:layout>
+			<s:VerticalLayout horizontalAlign="center"
+							  verticalAlign="middle"/>
+		</s:layout>
+		<s:Label text="{data}"/>
+	</s:BorderContainer>
+	<s:Rect height="100%" width="100%"
+			radiusX="10"
+			radiusY="10"
+			includeIn="hovered">
+		<s:fill>
+			<s:SolidColor color.hovered="#FFFFFF"
+						  alpha=".2"/>
+		</s:fill>
+	</s:Rect>
+</s:ItemRenderer>
