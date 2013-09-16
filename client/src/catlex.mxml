@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
-			   xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:model="components.model.*" xmlns:components="ru.satcit.rating.components.*">
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+         xmlns:components="ru.satcit.components.*">
 	<fx:Script>
 		<![CDATA[
 			import mx.collections.ArrayCollection;
 			
-			import components.renderer.NavigationItemRenderer;
 			[Bindable]
 			private var navigation:ArrayCollection = new ArrayCollection(["Start page", "Articles", "About"]);
 			
@@ -22,7 +22,7 @@
                       paddingBottom="10"/>
 	</s:layout>
 	
-	<fx:Style source="style/Styles.css"/>
+	<fx:Style source="ru/satcit/styles/Styles.css"/>
 	
   <s:BorderContainer cornerRadius="25" 
                      width="90%"
@@ -38,7 +38,7 @@
 		</s:layout>
     <s:SkinnableDataContainer id="navigationGroup" 
                               dataProvider="{navigation}" 
-                              itemRenderer="components.renderer.NavigationItemRenderer"
+                              itemRenderer="ru.satcit.components.NavigationItemRenderer"
                               width="{calendar.width}">
       <s:layout>
         <s:VerticalLayout/>
@@ -47,13 +47,13 @@
 		
 		<s:VGroup width="100%"
               height="100%">
-			<model:ArticleComponent id="mainContent" 
-               title="Content" 
-               height="100%" 
-               width="100%"
-               skinClass="components.ArticleSkin">
+			<components:ArticlePanel id="contentPanel"
+                                width="100%"
+                                height="100%"
+                                dropShadowVisible="false"
+                                title="Article Title">
         <s:Label text="Some content in panel"/>
-      </model:ArticleComponent>
+      </components:ArticlePanel>
 			<s:DataGroup id="contentButtonsGroup" 
                    dataProvider="{contentButtons}" 
                    itemRenderer="spark.skins.spark.DefaultItemRenderer">
@@ -63,7 +63,7 @@
 			</s:DataGroup>
 		</s:VGroup>
 		<mx:DateChooser id="calendar"
-						selectionIndicatorSkin="skin.SelectDateSkin">
+						selectionIndicatorSkin="ru.satcit.skins.SelectDateSkin">
 		</mx:DateChooser>
 	</s:Group>
 </s:Application>
