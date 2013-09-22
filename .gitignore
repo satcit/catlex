@@ -1,3 +1,6 @@
+#my exclusions
+WebContent/
+
 #################
 ## Eclipse
 #################
